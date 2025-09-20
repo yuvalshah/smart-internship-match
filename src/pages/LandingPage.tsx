@@ -39,7 +39,7 @@ const LandingPage = () => {
           <motion.a href="#" className="hover:text-primary transition-colors" whileHover={{ y: -2 }}>About</motion.a>
           <motion.a href="#" className="hover:text-primary transition-colors" whileHover={{ y: -2 }}>How It Works</motion.a>
           <motion.a href="#" className="hover:text-primary transition-colors" whileHover={{ y: -2 }}>Resources</motion.a>
-          <Link to="/role-selection">
+          <Link to="/auth">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button className="btn-primary-glow">Get Started</Button>
             </motion.div>
@@ -77,7 +77,7 @@ const LandingPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <Link to="/internships">
+            <Link to="/auth">
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" className="btn-primary-glow text-lg px-8 py-4 shadow-elegant hover:shadow-floating">
                   Find Internships
@@ -91,7 +91,7 @@ const LandingPage = () => {
                 </Button>
               </motion.div>
             </Link>
-            <Link to="/company-dashboard">
+            <Link to="/auth">
               <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.95 }}>
                 <Button size="lg" className="btn-ghost-enhanced text-lg px-8 py-4">
                   For Companies
@@ -215,7 +215,7 @@ const LandingPage = () => {
           <p className="text-xl text-muted-foreground">
             Join thousands of students and companies already using Smart PM to build the future.
           </p>
-          <Link to="/role-selection">
+          <Link to="/auth">
             <Button size="lg" className="btn-primary text-lg px-8 py-4">
               Get Started Today
             </Button>
