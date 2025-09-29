@@ -10,8 +10,33 @@
 
 ## 👨‍💻 Team Leader
 
-### Yuval Shah
-- **Role**: Team Leader, Full Stack Developer & AI Engineer
+### Manthan Varma
+- **Role**: Team Leader & Backend Developer
+- **Email**: manthanv900@gmail.com
+- **GitHub**: [@manthanv900](https://github.com/manthanv900)
+- **LinkedIn**: [Manthan Varma](https://linkedin.com/in/manthanv900)
+- **Phone**: +91-XXXXXXXXXX
+- **Location**: [Your City], India
+
+**Responsibilities**:
+- Overall project leadership and team coordination
+- Backend API development and optimization
+- Database design and implementation
+- Project planning and milestone management
+- Stakeholder communication and reporting
+
+**Technical Skills**:
+- Python, FastAPI, Flask
+- PostgreSQL, Database Design
+- RESTful API Development
+- Project Management, Team Leadership
+
+---
+
+## 👨‍💻 Team Members
+
+### Yuval Shah (Technical Lead/Co-lead)
+- **Role**: Technical Lead & AI Engineer
 - **Email**: yuvalshah0@gmail.com
 - **GitHub**: [@yuvalshah](https://github.com/yuvalshah)
 - **LinkedIn**: [Yuval Shah](https://linkedin.com/in/yuvalshah)
@@ -19,11 +44,11 @@
 - **Location**: [Your City], India
 
 **Responsibilities**:
-- Project architecture and technical leadership
+- Technical architecture and system design
 - AI/ML algorithm development and implementation
-- Backend API development and optimization
-- Database design and management
-- System integration and deployment
+- Advanced backend development and optimization
+- Code review and technical mentoring
+- Innovation and research initiatives
 
 **Technical Skills**:
 - Python, FastAPI, Machine Learning, AI/ML
@@ -31,12 +56,8 @@
 - Database Design, API Development
 - Cloud Computing, DevOps
 
----
-
-## 👨‍💻 Team Members
-
-### Tushar Varshney
-- **Role**: Frontend Developer
+### Tushar Varshney (Frontend Architect)
+- **Role**: Frontend Architect
 - **Email**: tusharv2005@example.com
 - **GitHub**: [@tusharv2005](https://github.com/tusharv2005)
 - **LinkedIn**: [Tushar Varshney](https://linkedin.com/in/tusharv2005)
@@ -44,8 +65,9 @@
 - **Location**: [Your City], India
 
 **Responsibilities**:
-- Frontend development and user interface design
+- Frontend architecture and system design
 - React component architecture and state management
+- Frontend team leadership and mentoring
 - User experience optimization and responsive design
 - API integration and data visualization
 - Cross-browser compatibility and performance optimization
@@ -53,6 +75,7 @@
 **Technical Skills**:
 - React, TypeScript, JavaScript
 - HTML5, CSS3, Tailwind CSS
+- Frontend Architecture, Component Design
 - UI/UX Design, Figma, Adobe Creative Suite
 - Responsive Web Design, PWA Development
 
@@ -163,7 +186,12 @@
 ## 📞 Contact Information
 
 ### Primary Contact
-- **Team Leader**: Yuval Shah
+- **Team Leader**: Manthan Varma
+- **Email**: manthanv900@gmail.com
+- **Phone**: +91-XXXXXXXXXX
+
+### Technical Contact
+- **Technical Lead**: Yuval Shah
 - **Email**: yuvalshah0@gmail.com
 - **Phone**: +91-XXXXXXXXXX
 
