@@ -60,12 +60,12 @@ Smart Internship Match is an intelligent platform that revolutionizes how studen
 - **Framer Motion** for animations
 - **Supabase** for authentication and database
 
-### Backend
-- **FastAPI** (Python) for REST API
-- **SBERT** for semantic similarity
-- **scikit-learn** for machine learning
+### Backend (Integrated Server)
+- **FastAPI** (Python) - Single integrated server on port 8000
+- **AI Matchmaking System** - SBERT embeddings, policy-aware scoring, LinUCB bandit
+- **Resume Generation** - LaTeX PDF generation with WeasyPrint fallback
+- **RAG Chatbot** - LangChain + ChromaDB + LM Studio integration
 - **SQLite** for learning data storage
-- **WeasyPrint** for PDF generation
 
 ### Database
 - **Supabase** (PostgreSQL) with Row Level Security
@@ -94,13 +94,13 @@ chmod +x setup_backend.sh start_demo.sh
 
 ### Option 2: Manual Setup
 
-#### Backend Setup
+#### Backend Setup (Integrated Server)
 ```bash
 cd backend
 python3 -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
-python start_server.py
+python main.py  # Starts integrated server with all services
 ```
 
 #### Frontend Setup (in another terminal)
@@ -109,14 +109,8 @@ npm install
 npm run dev
 ```
 
-#### RAG Chatbot Setup (optional)
-```bash
-cd rag
-python3 -m venv rag_env
-source rag_env/bin/activate  # On Windows: rag_env\Scripts\activate
-pip install -r requirements.txt
-python server.py
-```
+#### RAG Chatbot Setup (Integrated)
+The RAG chatbot is now integrated into the main backend server. No separate setup required!
 
 ## 📱 Usage
 
@@ -157,11 +151,23 @@ The platform uses a sophisticated three-tier matching system:
 
 ## 📊 API Documentation
 
-### Core Endpoints
+### Core Endpoints (Integrated Server - Port 8000)
+- `GET /` - Service overview and status
+- `GET /health` - Comprehensive health check
+- `GET /docs` - Interactive API documentation
+
+#### AI Matchmaking
 - `POST /api/recommendations` - Get AI-powered internship recommendations
 - `POST /api/feedback` - Record user feedback for learning
+- `GET /api/matchmaking-health` - Matchmaking system health
+
+#### Resume Generation
 - `POST /generate-resume` - Generate professional resumes
-- `GET /api/matchmaking-health` - System health check
+- `GET /resume-health` - Resume generation system health
+
+#### RAG Chatbot
+- `POST /api/chat` - Chat with AI mentor
+- `GET /api/rag-health` - RAG chatbot system health
 
 ### Example API Usage
 ```javascript

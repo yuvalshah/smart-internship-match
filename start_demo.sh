@@ -34,9 +34,12 @@ else
     source venv/bin/activate
 fi
 
-# Start backend server
-echo "🚀 Starting Resume Analyzer API..."
-python start_server.py &
+# Start integrated backend server
+echo "🚀 Starting Integrated Smart Internship Match API..."
+echo "   - AI Matchmaking System"
+echo "   - Resume Generation Service" 
+echo "   - RAG Chatbot System"
+python main.py &
 BACKEND_PID=$!
 
 # Wait for backend to start
@@ -50,11 +53,13 @@ npm run dev &
 FRONTEND_PID=$!
 
 echo ""
-echo "✅ SmartPM Demo is starting!"
+echo "✅ Smart Internship Match Demo is starting!"
 echo ""
-echo "🔗 Frontend: http://localhost:5173"
-echo "🔗 Backend API: http://localhost:8000"
-echo "📚 API Docs: http://localhost:8000/docs"
+echo "🔗 Frontend: http://localhost:8080"
+echo "🔗 Integrated Backend API: http://localhost:8000"
+echo "📚 API Documentation: http://localhost:8000/docs"
+echo "🤖 RAG Chatbot: http://localhost:8000/api/chat"
+echo "🏥 Health Check: http://localhost:8000/health"
 echo ""
 echo "Press Ctrl+C to stop both servers"
 

@@ -31,7 +31,17 @@ from matchmaking_system import (
     matchmaking_system
 )
 
-app = FastAPI(title="SmartPM Skills Matcher API", version="1.0.0")
+# Import RAG chatbot system
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'rag'))
+from rag import RAGModel
+
+app = FastAPI(
+    title="Smart Internship Match - Integrated API", 
+    description="AI-Powered Internship Matching Platform with Resume Generation and RAG Chatbot",
+    version="2.0.0"
+)
 
 # Add CORS middleware
 app.add_middleware(
@@ -44,6 +54,9 @@ app.add_middleware(
 
 # Global variable for dataset
 jobs_df = None
+
+# Global RAG model instance
+rag_model = None
 
 class SkillsRequest(BaseModel):
     skills: List[str]
@@ -304,8 +317,26 @@ def match_jobs_by_skills(user_skills: List[str], top_k: int = 5) -> dict:
 
 @app.get("/")
 async def root():
-    """Health check endpoint"""
-    return {"message": "SmartPM Skills Matcher API is running!", "status": "healthy"}
+    """Root endpoint with service overview"""
+    global rag_model
+    return {
+        "message": "Smart Internship Match - Integrated API is running!", 
+        "status": "healthy",
+        "version": "2.0.0",
+        "services": {
+            "ai_matchmaking": "active",
+            "resume_generation": "active",
+            "rag_chatbot": "active" if rag_model and rag_model.rag_chain else "inactive"
+        },
+        "endpoints": {
+            "health": "/health",
+            "api_docs": "/docs",
+            "matchmaking": "/api/recommendations",
+            "resume": "/generate-resume",
+            "chat": "/api/chat",
+            "rag_health": "/api/rag-health"
+        }
+    }
 
 @app.post("/match-jobs", response_model=MatchResponse)
 async def match_jobs_endpoint(request: SkillsRequest):
@@ -321,11 +352,21 @@ async def health_check():
     """Detailed health check"""
     try:
         jobs_df = load_dataset()
+        global rag_model
         
         return {
             "status": "healthy",
             "dataset_loaded": jobs_df is not None,
-            "total_jobs": len(jobs_df) if jobs_df is not None else 0
+            "total_jobs": len(jobs_df) if jobs_df is not None else 0,
+            "rag_system": {
+                "initialized": rag_model is not None and rag_model.rag_chain is not None,
+                "llm_connected": rag_model.test_connection() if rag_model else False
+            },
+            "services": {
+                "matchmaking": "active",
+                "resume_generation": "active", 
+                "rag_chatbot": "active" if rag_model and rag_model.rag_chain else "inactive"
+            }
         }
     except Exception as e:
         return {
@@ -1118,6 +1159,98 @@ class FeedbackRequest(BaseModel):
     internship: InternshipRequest
     applied: bool
     approved: bool
+
+# RAG Chatbot Models
+class ChatRequest(BaseModel):
+    message: str
+    user_id: Optional[str] = "anonymous"
+    session_id: Optional[str] = None
+    context: Optional[str] = "internship_mentoring"
+
+class ChatResponse(BaseModel):
+    response: str
+    status: str
+    context_used: bool
+    timestamp: str
+    error: Optional[str] = None
+
+class RAGHealthResponse(BaseModel):
+    status: str
+    message: str
+    rag_initialized: bool
+    llm_connected: bool
+
+# RAG Chatbot Functions
+def initialize_rag_model():
+    """Initialize the RAG model for chatbot functionality"""
+    global rag_model
+    try:
+        logger.info("🚀 Initializing RAG chatbot system...")
+        rag_model = RAGModel()
+        success = rag_model.initialize()
+        
+        if success:
+            logger.info("✅ RAG chatbot system initialized successfully")
+            return True
+        else:
+            logger.error("❌ RAG chatbot system initialization failed")
+            return False
+    except Exception as e:
+        logger.error(f"❌ Error initializing RAG system: {e}")
+        return False
+
+# Initialize RAG model on startup
+rag_initialized = initialize_rag_model()
+
+@app.get("/api/rag-health", response_model=RAGHealthResponse)
+async def rag_health_check():
+    """Health check for RAG chatbot system"""
+    global rag_model
+    
+    rag_initialized = rag_model is not None and rag_model.rag_chain is not None
+    llm_connected = rag_model.test_connection() if rag_model else False
+    
+    return RAGHealthResponse(
+        status="online" if rag_initialized else "offline",
+        message="RAG Chatbot API is running" if rag_initialized else "RAG system not available",
+        rag_initialized=rag_initialized,
+        llm_connected=llm_connected
+    )
+
+@app.post("/api/chat", response_model=ChatResponse)
+async def chat_with_mentor(request: ChatRequest):
+    """Chat with AI mentor using RAG system"""
+    global rag_model
+    
+    if not rag_model or not rag_model.rag_chain:
+        return ChatResponse(
+            response="Sorry, the AI mentor is currently unavailable. Please try again later.",
+            status="error",
+            context_used=False,
+            timestamp=datetime.now().isoformat(),
+            error="RAG system not initialized"
+        )
+    
+    try:
+        # Get response from RAG system
+        response = rag_model.chat(request.message)
+        
+        return ChatResponse(
+            response=response,
+            status="success",
+            context_used=True,
+            timestamp=datetime.now().isoformat()
+        )
+        
+    except Exception as e:
+        logger.error(f"Error in chat endpoint: {e}")
+        return ChatResponse(
+            response="Sorry, I encountered an error while processing your message. Please try again.",
+            status="error",
+            context_used=False,
+            timestamp=datetime.now().isoformat(),
+            error=str(e)
+        )
 
 @app.post("/api/recommendations", response_model=List[RecommendationResponse])
 async def get_recommendations(request: MatchmakingRequest):
