@@ -31,11 +31,21 @@ from matchmaking_system import (
     matchmaking_system
 )
 
-# Import RAG chatbot system
+# Import RAG chatbot system (optional)
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'rag'))
-from rag import RAGModel
+
+# Try to import RAG model, but make it optional
+try:
+    from rag import RAGModel
+    RAG_AVAILABLE = True
+    print("✅ RAG chatbot system available")
+except ImportError as e:
+    print(f"⚠️ RAG chatbot system not available: {e}")
+    print("   Install RAG dependencies: pip install langchain langchain-openai langchain-community chromadb")
+    RAG_AVAILABLE = False
+    RAGModel = None
 
 app = FastAPI(
     title="Smart Internship Match - Integrated API", 
@@ -326,7 +336,7 @@ async def root():
         "services": {
             "ai_matchmaking": "active",
             "resume_generation": "active",
-            "rag_chatbot": "active" if rag_model and rag_model.rag_chain else "inactive"
+            "rag_chatbot": "active" if RAG_AVAILABLE and rag_model and rag_model.rag_chain else "inactive"
         },
         "endpoints": {
             "health": "/health",
@@ -359,13 +369,14 @@ async def health_check():
             "dataset_loaded": jobs_df is not None,
             "total_jobs": len(jobs_df) if jobs_df is not None else 0,
             "rag_system": {
-                "initialized": rag_model is not None and rag_model.rag_chain is not None,
-                "llm_connected": rag_model.test_connection() if rag_model else False
+                "available": RAG_AVAILABLE,
+                "initialized": rag_model is not None and rag_model.rag_chain is not None if RAG_AVAILABLE else False,
+                "llm_connected": rag_model.test_connection() if rag_model and RAG_AVAILABLE else False
             },
             "services": {
                 "matchmaking": "active",
                 "resume_generation": "active", 
-                "rag_chatbot": "active" if rag_model and rag_model.rag_chain else "inactive"
+                "rag_chatbot": "active" if RAG_AVAILABLE and rag_model and rag_model.rag_chain else "inactive"
             }
         }
     except Exception as e:
@@ -1184,28 +1195,41 @@ class RAGHealthResponse(BaseModel):
 def initialize_rag_model():
     """Initialize the RAG model for chatbot functionality"""
     global rag_model
+    
+    if not RAG_AVAILABLE:
+        print("⚠️ RAG system not available - skipping initialization")
+        return False
+        
     try:
-        logger.info("🚀 Initializing RAG chatbot system...")
+        print("🚀 Initializing RAG chatbot system...")
         rag_model = RAGModel()
         success = rag_model.initialize()
         
         if success:
-            logger.info("✅ RAG chatbot system initialized successfully")
+            print("✅ RAG chatbot system initialized successfully")
             return True
         else:
-            logger.error("❌ RAG chatbot system initialization failed")
+            print("❌ RAG chatbot system initialization failed")
             return False
     except Exception as e:
-        logger.error(f"❌ Error initializing RAG system: {e}")
+        print(f"❌ Error initializing RAG system: {e}")
         return False
 
-# Initialize RAG model on startup
-rag_initialized = initialize_rag_model()
+# Initialize RAG model on startup (only if available)
+rag_initialized = initialize_rag_model() if RAG_AVAILABLE else False
 
 @app.get("/api/rag-health", response_model=RAGHealthResponse)
 async def rag_health_check():
     """Health check for RAG chatbot system"""
     global rag_model
+    
+    if not RAG_AVAILABLE:
+        return RAGHealthResponse(
+            status="offline",
+            message="RAG system not available - dependencies not installed",
+            rag_initialized=False,
+            llm_connected=False
+        )
     
     rag_initialized = rag_model is not None and rag_model.rag_chain is not None
     llm_connected = rag_model.test_connection() if rag_model else False
@@ -1221,6 +1245,15 @@ async def rag_health_check():
 async def chat_with_mentor(request: ChatRequest):
     """Chat with AI mentor using RAG system"""
     global rag_model
+    
+    if not RAG_AVAILABLE:
+        return ChatResponse(
+            response="Sorry, the AI mentor is currently unavailable. RAG system dependencies are not installed. Please install: pip install langchain langchain-openai langchain-community chromadb",
+            status="error",
+            context_used=False,
+            timestamp=datetime.now().isoformat(),
+            error="RAG system not available"
+        )
     
     if not rag_model or not rag_model.rag_chain:
         return ChatResponse(
@@ -1243,7 +1276,7 @@ async def chat_with_mentor(request: ChatRequest):
         )
         
     except Exception as e:
-        logger.error(f"Error in chat endpoint: {e}")
+        print(f"Error in chat endpoint: {e}")
         return ChatResponse(
             response="Sorry, I encountered an error while processing your message. Please try again.",
             status="error",
