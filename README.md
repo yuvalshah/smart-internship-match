@@ -270,9 +270,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Support
 
 For questions or support:
-- **Email**: [your-email@example.com]
-- **GitHub Issues**: [Create an issue](https://github.com/yourusername/smart-internship-match/issues)
-- **Documentation**: [Project Wiki](https://github.com/yourusername/smart-internship-match/wiki)
+- **Email**: yuvalshah0@gmail.com
+- **GitHub Issues**: [Create an issue](https://github.com/yuvalshah/smart-internship-match/issues)
 
 ## 🙏 Acknowledgments
 
