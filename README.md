@@ -8,14 +8,14 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org/)
 
 ## 👥 Team
-**Team Leader**: Manthan Varma | **Email**: manthanv900@gmail.com | **GitHub**: [@manthanv900](https://github.com/manthanv900)  
-**Technical Lead/Co-lead**: Yuval Shah | **Email**: yuvalshah0@gmail.com | **GitHub**: [@yuvalshah](https://github.com/yuvalshah)  
-**Frontend Architect**: Tushar Varshney | **Email**: tusharv2005@example.com | **GitHub**: [@tusharv2005](https://github.com/tusharv2005)  
-**UI/UX Designer**: Aanannya Asati | **Email**: aanannya@example.com | **GitHub**: [@aanannya](https://github.com/aanannya)  
-**Database Engineer**: Vedant Pandey | **Email**: vedant@example.com | **GitHub**: [@vedant](https://github.com/vedant)  
-**DevOps Engineer**: Mokshika Jain | **Email**: mokshika@example.com | **GitHub**: [@mokshika](https://github.com/mokshika)
+**Team Leader**: Manthan Varma  
+**Technical Lead/Co-lead**: Yuval Shah  
+**Frontend Architect**: Tushar Varshney  
+**UI/UX Designer**: Aanannya Asati  
+**Database Engineer**: Vedant Pandey  
+**DevOps Engineer**: Mokshika Jain
 
-📋 **[Complete Team Details](TEAM.md)** | 🏫 **Institution**: [Your University/College] | 📧 **Project Email**: smart-internship-match@example.com
+📋 **[Complete Team Details](TEAM.md)**
 
 ## 🚀 Overview
 
@@ -240,44 +240,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Team Leader
 - **Manthan Varma** - Team Leader & Backend Developer
-  - **Email**: manthanv900@gmail.com
-  - **GitHub**: [@manthanv900](https://github.com/manthanv900)
-  - **LinkedIn**: [Manthan Varma](https://linkedin.com/in/manthanv900)
   - **Role**: Project Leadership, Team Coordination, Backend Development
 
 ### Technical Lead/Co-lead
 - **Yuval Shah** - Technical Lead & AI Engineer
-  - **Email**: yuvalshah0@gmail.com
-  - **GitHub**: [@yuvalshah](https://github.com/yuvalshah)
-  - **LinkedIn**: [Yuval Shah](https://linkedin.com/in/yuvalshah)
   - **Role**: Technical Leadership, AI/ML Implementation, System Architecture
 
 ### Team Members
 - **Tushar Varshney** - Frontend Architect
-  - **Email**: tusharv2005@example.com
-  - **GitHub**: [@tusharv2005](https://github.com/tusharv2005)
   - **Role**: Frontend Architecture, React Development, UI/UX Implementation
 
 - **Aanannya Asati** - UI/UX Designer
-  - **Email**: aanannya@example.com
-  - **GitHub**: [@aanannya](https://github.com/aanannya)
   - **Role**: User Interface Design, User Experience, Visual Design
 
 - **Vedant Pandey** - Database Engineer
-  - **Email**: vedant@example.com
-  - **GitHub**: [@vedant](https://github.com/vedant)
   - **Role**: Database Architecture, Query Optimization, Data Management
 
 - **Mokshika Jain** - DevOps Engineer
-  - **Email**: mokshika@example.com
-  - **GitHub**: [@mokshika](https://github.com/mokshika)
   - **Role**: Deployment, Infrastructure, CI/CD, Monitoring
-
-### Contact Information
-- **Project Email**: smart-internship-match@example.com
-- **Hackathon Team ID**: [Your Team ID]
-- **Institution**: [Your University/College Name]
-- **City**: [Your City]
 
 ## 🏆 Hackathon Achievements
 

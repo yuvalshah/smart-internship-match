@@ -12,11 +12,6 @@
 
 ### Manthan Varma
 - **Role**: Team Leader & Backend Developer
-- **Email**: manthanv900@gmail.com
-- **GitHub**: [@manthanv900](https://github.com/manthanv900)
-- **LinkedIn**: [Manthan Varma](https://linkedin.com/in/manthanv900)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [Your City], India
 
 **Responsibilities**:
 - Overall project leadership and team coordination
@@ -37,11 +32,6 @@
 
 ### Yuval Shah (Technical Lead/Co-lead)
 - **Role**: Technical Lead & AI Engineer
-- **Email**: yuvalshah0@gmail.com
-- **GitHub**: [@yuvalshah](https://github.com/yuvalshah)
-- **LinkedIn**: [Yuval Shah](https://linkedin.com/in/yuvalshah)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [Your City], India
 
 **Responsibilities**:
 - Technical architecture and system design
@@ -58,11 +48,6 @@
 
 ### Tushar Varshney (Frontend Architect)
 - **Role**: Frontend Architect
-- **Email**: tusharv2005@example.com
-- **GitHub**: [@tusharv2005](https://github.com/tusharv2005)
-- **LinkedIn**: [Tushar Varshney](https://linkedin.com/in/tusharv2005)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [Your City], India
 
 **Responsibilities**:
 - Frontend architecture and system design
@@ -86,11 +71,6 @@
 ### Manthan Varma
 - **Name**: Manthan Varma
 - **Role**: Backend Developer
-- **Email**: manthanv900@gmail.com
-- **GitHub**: [@manthanv900](https://github.com/manthanv900)
-- **LinkedIn**: [Manthan Varma](https://linkedin.com/in/manthanv900)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [City], India
 
 **Responsibilities**:
 - Backend API development and optimization
@@ -108,11 +88,6 @@
 ### Aanannya Asati
 - **Name**: Aanannya Asati
 - **Role**: UI/UX Designer
-- **Email**: aanannya@example.com
-- **GitHub**: [@aanannya](https://github.com/aanannya)
-- **LinkedIn**: [Aanannya Asati](https://linkedin.com/in/aanannya)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [City], India
 
 **Responsibilities**:
 - User interface design and prototyping
@@ -130,11 +105,6 @@
 ### Vedant Pandey
 - **Name**: Vedant Pandey
 - **Role**: Database Engineer
-- **Email**: vedant@example.com
-- **GitHub**: [@vedant](https://github.com/vedant)
-- **LinkedIn**: [Vedant Pandey](https://linkedin.com/in/vedant)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [City], India
 
 **Responsibilities**:
 - Database architecture and design
@@ -152,11 +122,6 @@
 ### Mokshika Jain
 - **Name**: Mokshika Jain
 - **Role**: DevOps Engineer
-- **Email**: mokshika@example.com
-- **GitHub**: [@mokshika](https://github.com/mokshika)
-- **LinkedIn**: [Mokshika Jain](https://linkedin.com/in/mokshika)
-- **Phone**: +91-XXXXXXXXXX
-- **Location**: [City], India
 
 **Responsibilities**:
 - Deployment and infrastructure management
@@ -170,40 +135,6 @@
 - CI/CD Pipelines, GitHub Actions
 - Monitoring and Logging Tools
 - Infrastructure as Code
-
----
-
-## 🏫 Institution Information
-
-- **Institution Name**: [Your University/College Name]
-- **Department**: [Your Department - e.g., Computer Science, Information Technology]
-- **Course**: [Your Course - e.g., B.Tech, M.Tech, BCA, MCA]
-- **Year**: [Your Academic Year]
-- **Location**: [City, State], India
-
----
-
-## 📞 Contact Information
-
-### Primary Contact
-- **Team Leader**: Manthan Varma
-- **Email**: manthanv900@gmail.com
-- **Phone**: +91-XXXXXXXXXX
-
-### Technical Contact
-- **Technical Lead**: Yuval Shah
-- **Email**: yuvalshah0@gmail.com
-- **Phone**: +91-XXXXXXXXXX
-
-### Project Communication
-- **Project Email**: smart-internship-match@example.com
-- **GitHub Repository**: https://github.com/yuvalshah/smart-internship-match
-- **Hackathon Team ID**: [Your Team ID from Smart India Hackathon]
-
-### Emergency Contact
-- **Name**: [Emergency Contact Name]
-- **Phone**: +91-XXXXXXXXXX
-- **Relation**: [Relationship to team]
 
 ---
 
