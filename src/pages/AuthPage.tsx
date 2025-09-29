@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,13 +17,37 @@ const AuthPage = () => {
   const [name, setName] = useState('');
   const [userType, setUserType] = useState<'student' | 'company' | 'admin'>('student');
   const [loading, setLoading] = useState(false);
+  const [searchParams] = useSearchParams();
   
   const { signIn, signUp, signInWithGoogle, user } = useAuth();
   const navigate = useNavigate();
 
+  // Get role from URL params
+  const roleFromUrl = searchParams.get('role') as 'student' | 'company' | 'admin';
+
+  useEffect(() => {
+    if (roleFromUrl) {
+      setUserType(roleFromUrl);
+    }
+  }, [roleFromUrl]);
+
   useEffect(() => {
     if (user) {
-      navigate('/role-selection');
+      const userType = user.user_metadata?.user_type || 'student';
+      // Redirect based on user type
+      switch (userType) {
+        case 'student':
+          navigate('/student-dashboard');
+          break;
+        case 'company':
+          navigate('/company-dashboard');
+          break;
+        case 'admin':
+          navigate('/admin-dashboard');
+          break;
+        default:
+          navigate('/role-selection');
+      }
     }
   }, [user, navigate]);
 
@@ -34,7 +58,7 @@ const AuthPage = () => {
     const { error } = await signIn(email, password);
     
     if (!error) {
-      navigate('/role-selection');
+      // The useEffect will handle the redirect based on user type
     }
     
     setLoading(false);
@@ -58,7 +82,7 @@ const AuthPage = () => {
     const { error } = await signUp(email, password, userData);
     
     if (!error) {
-      navigate('/role-selection');
+      // The useEffect will handle the redirect based on user type
     }
     
     setLoading(false);
@@ -83,13 +107,46 @@ const AuthPage = () => {
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
                 <span className="material-symbols-outlined text-white text-2xl">
-                  pie_chart
+                  business_center
                 </span>
               </div>
-              <h1 className="text-2xl font-bold font-display text-foreground">Smart PM</h1>
+              <h1 className="text-2xl font-bold font-display text-foreground">CareerCraft</h1>
             </div>
             <CardTitle className="text-xl">Welcome</CardTitle>
             <CardDescription>Sign in to your account or create a new one</CardDescription>
+            
+            {/* Role Indicator */}
+            <div className="mt-4 p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg border border-primary/20">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-6 h-6 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                    <span className="material-symbols-outlined text-white text-sm">
+                      {userType === 'student' ? 'school' : userType === 'company' ? 'business' : 'admin_panel_settings'}
+                    </span>
+                  </div>
+                  <span className="text-sm font-semibold text-foreground">
+                    Signing in as: <span className="text-primary capitalize">{userType}</span>
+                  </span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    const newRole = userType === 'student' ? 'company' : userType === 'company' ? 'admin' : 'student';
+                    setUserType(newRole);
+                    navigate(`/auth?role=${newRole}`, { replace: true });
+                  }}
+                  className="text-xs h-6 px-2"
+                >
+                  Switch
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                {userType === 'student' && 'Find and apply to internships'}
+                {userType === 'company' && 'Post internships and manage applications'}
+                {userType === 'admin' && 'Manage platform and oversee operations'}
+              </p>
+            </div>
           </CardHeader>
           
           <CardContent>
@@ -129,7 +186,7 @@ const AuthPage = () => {
                     className="w-full btn-primary-glow"
                     disabled={loading}
                   >
-                    {loading ? 'Signing in...' : 'Sign In'}
+                    {loading ? 'Signing in...' : `Sign In as ${userType.charAt(0).toUpperCase() + userType.slice(1)}`}
                   </Button>
                 </form>
               </TabsContent>
@@ -201,7 +258,7 @@ const AuthPage = () => {
                     className="w-full btn-primary-glow"
                     disabled={loading}
                   >
-                    {loading ? 'Creating account...' : 'Create Account'}
+                    {loading ? 'Creating account...' : `Create ${userType.charAt(0).toUpperCase() + userType.slice(1)} Account`}
                   </Button>
                 </form>
               </TabsContent>
@@ -230,7 +287,7 @@ const AuthPage = () => {
                   <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
                   <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                Continue with Google
+                Continue with Google as {userType.charAt(0).toUpperCase() + userType.slice(1)}
               </Button>
             </div>
           </CardContent>

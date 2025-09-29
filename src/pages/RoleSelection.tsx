@@ -13,7 +13,7 @@ const RoleSelection = () => {
                 pie_chart
               </span>
             </div>
-            <h1 className="text-3xl font-bold font-display text-foreground">Smart PM</h1>
+            <h1 className="text-3xl font-bold font-display text-foreground">CareerCraft</h1>
           </div>
           <p className="text-lg text-muted-foreground">
             Join our platform by selecting your role to begin.

@@ -1,0 +1,22 @@
+# Core dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+pydantic>=2.8.0
+
+# LangChain and OpenAI (compatible versions)
+langchain-openai>=0.1.8
+openai>=1.35.0
+
+# Vector store and embeddings
+chromadb>=0.4.24
+sentence-transformers>=2.7.0
+
+# Additional utilities
+requests>=2.31.0
+python-multipart>=0.0.6
+numpy>=1.26.0
+
+# Missing dependencies
+langchain-community>=0.2.0
+langchain-core>=0.2.0
+langchain>=0.2.0

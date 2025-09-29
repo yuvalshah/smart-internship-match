@@ -22,6 +22,40 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [loading, setLoading] = useState(true);
   const { toast } = useToast();
 
+  // Development mode - automatically set mock user for testing (only if no real user)
+  useEffect(() => {
+    // Check if we're in development mode and no user is logged in
+    if (process.env.NODE_ENV === 'development' && !user && loading) {
+      // Check if there's a real session first
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (!session) {
+          // Only set mock user if no real session exists
+          const mockUser = {
+            id: '550e8400-e29b-41d4-a716-446655440000', // Proper UUID format
+            email: 'tudj@gmail.com', // Use the email from the image
+            user_metadata: {
+              full_name: 'Radhe Shyam',
+              user_type: 'student'
+            },
+            app_metadata: {},
+            aud: 'authenticated',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          } as User;
+          
+          const mockSession = {
+            user: mockUser,
+            access_token: 'mock-token'
+          } as Session;
+          
+          setUser(mockUser);
+          setSession(mockSession);
+          setLoading(false);
+        }
+      });
+    }
+  }, [user, loading]);
+
   useEffect(() => {
     // Set up auth state listener
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
@@ -98,7 +132,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: redirectUrl
+        redirectTo: redirectUrl,
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        }
       }
     });
     
@@ -123,6 +161,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         variant: "destructive",
       });
     } else {
+      // Clear localStorage data on logout
+      if (user) {
+        localStorage.removeItem(`student_profile_${user.id}`);
+      }
+      
       toast({
         title: "Goodbye!",
         description: "You have been signed out.",

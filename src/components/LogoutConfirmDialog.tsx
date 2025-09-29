@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -7,32 +10,54 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
 
 interface LogoutConfirmDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onConfirm: () => void;
+  children: React.ReactNode;
 }
 
-export const LogoutConfirmDialog: React.FC<LogoutConfirmDialogProps> = ({
-  open,
-  onOpenChange,
-  onConfirm,
-}) => {
+export const LogoutConfirmDialog: React.FC<LogoutConfirmDialogProps> = ({ children }) => {
+  const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    setLoading(true);
+    const { error } = await signOut();
+    
+    if (!error) {
+      navigate('/');
+      setOpen(false);
+    }
+    
+    setLoading(false);
+  };
+
   return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent>
+    <AlertDialog open={open} onOpenChange={setOpen}>
+      <AlertDialogTrigger asChild>
+        {children}
+      </AlertDialogTrigger>
+      <AlertDialogContent className="glass-card-premium">
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure you want to logout?</AlertDialogTitle>
-          <AlertDialogDescription>
-            You will be signed out of your account and redirected to the login page.
+          <AlertDialogTitle className="text-foreground">Confirm Logout</AlertDialogTitle>
+          <AlertDialogDescription className="text-muted-foreground">
+            Are you sure you want to logout? You'll need to sign in again to access your account.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm}>
-            Yes, logout
+          <AlertDialogCancel disabled={loading}>
+            Cancel
+          </AlertDialogCancel>
+          <AlertDialogAction
+            onClick={handleLogout}
+            disabled={loading}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          >
+            {loading ? 'Logging out...' : 'Logout'}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

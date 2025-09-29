@@ -8,11 +8,27 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    fs: {
+      deny: ["**/backend/venv/**", "**/rag/rag_env/**", "**/venv/**"],
+    },
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react({
+      jsxRuntime: "automatic",
+    }), 
+    mode === "development" && componentTagger()
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    rollupOptions: {
+      input: path.resolve(__dirname, "index.html"),
+    },
+  },
+  optimizeDeps: {
+    exclude: ["backend/venv", "rag/rag_env", "venv"],
   },
 }));

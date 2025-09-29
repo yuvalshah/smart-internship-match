@@ -16,6 +16,11 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
 
   useEffect(() => {
     if (!loading) {
+      // In development mode, allow access without authentication
+      if (process.env.NODE_ENV === 'development') {
+        return;
+      }
+
       if (!user) {
         navigate('/auth');
         return;
@@ -34,6 +39,11 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
+  }
+
+  // In development mode, allow access without authentication
+  if (process.env.NODE_ENV === 'development') {
+    return <>{children}</>;
   }
 
   if (!user) {

@@ -14,6 +14,51 @@ export type Database = {
   }
   public: {
     Tables: {
+      profiles: {
+        Row: {
+          id: string
+          full_name: string | null
+          company_name: string | null
+          email: string | null
+          avatar_url: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+          is_active: boolean | null
+          created_at: string | null
+          updated_at: string | null
+          resume_url: string | null
+          linkedin_url: string | null
+          github_url: string | null
+        }
+        Insert: {
+          id: string
+          full_name?: string | null
+          company_name?: string | null
+          email?: string | null
+          avatar_url?: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+          is_active?: boolean | null
+          created_at?: string | null
+          updated_at?: string | null
+          resume_url?: string | null
+          linkedin_url?: string | null
+          github_url?: string | null
+        }
+        Update: {
+          id?: string
+          full_name?: string | null
+          company_name?: string | null
+          email?: string | null
+          avatar_url?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
+          is_active?: boolean | null
+          created_at?: string | null
+          updated_at?: string | null
+          resume_url?: string | null
+          linkedin_url?: string | null
+          github_url?: string | null
+        }
+        Relationships: []
+      }
       admins: {
         Row: {
           created_at: string | null
