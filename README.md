@@ -7,6 +7,16 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green.svg)](https://fastapi.tiangolo.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org/)
 
+## 👥 Team
+**Team Leader**: Yuval Shah | **Email**: yuvalshah0@gmail.com | **GitHub**: [@yuvalshah](https://github.com/yuvalshah)  
+**Frontend Developer**: Tushar Varshney | **Email**: tusharv2005@example.com | **GitHub**: [@tusharv2005](https://github.com/tusharv2005)  
+**Backend Developer**: Manthan Varma | **Email**: manthanv900@gmail.com | **GitHub**: [@manthanv900](https://github.com/manthanv900)  
+**UI/UX Designer**: Aanannya Asati | **Email**: aanannya@example.com | **GitHub**: [@aanannya](https://github.com/aanannya)  
+**Database Engineer**: Vedant Pandey | **Email**: vedant@example.com | **GitHub**: [@vedant](https://github.com/vedant)  
+**DevOps Engineer**: Mokshika Jain | **Email**: mokshika@example.com | **GitHub**: [@mokshika](https://github.com/mokshika)
+
+📋 **[Complete Team Details](TEAM.md)** | 🏫 **Institution**: [Your University/College] | 📧 **Project Email**: smart-internship-match@example.com
+
 ## 🚀 Overview
 
 Smart Internship Match is an intelligent platform that revolutionizes how students find and apply for internships. Using advanced AI algorithms, the platform provides personalized internship recommendations based on skills, preferences, and equity considerations.
@@ -228,10 +238,44 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 👥 Team
 
-- **Lead Developer**: [Your Name]
-- **AI/ML Engineer**: [Team Member]
-- **Frontend Developer**: [Team Member]
-- **Backend Developer**: [Team Member]
+### Team Leader
+- **Yuval Shah** - Full Stack Developer & AI Engineer
+  - **Email**: yuvalshah0@gmail.com
+  - **GitHub**: [@yuvalshah](https://github.com/yuvalshah)
+  - **LinkedIn**: [Yuval Shah](https://linkedin.com/in/yuvalshah)
+  - **Role**: Project Lead, AI/ML Implementation, Backend Development
+
+### Team Members
+- **Tushar Varshney** - Frontend Developer
+  - **Email**: tusharv2005@example.com
+  - **GitHub**: [@tusharv2005](https://github.com/tusharv2005)
+  - **Role**: React Development, Component Architecture, Frontend Integration
+
+- **Manthan Varma** - Backend Developer
+  - **Email**: manthanv900@gmail.com
+  - **GitHub**: [@manthanv900](https://github.com/manthanv900)
+  - **Role**: API Development, Database Design, Server-side Logic
+
+- **Aanannya Asati** - UI/UX Designer
+  - **Email**: aanannya@example.com
+  - **GitHub**: [@aanannya](https://github.com/aanannya)
+  - **Role**: User Interface Design, User Experience, Visual Design
+
+- **Vedant Pandey** - Database Engineer
+  - **Email**: vedant@example.com
+  - **GitHub**: [@vedant](https://github.com/vedant)
+  - **Role**: Database Architecture, Query Optimization, Data Management
+
+- **Mokshika Jain** - DevOps Engineer
+  - **Email**: mokshika@example.com
+  - **GitHub**: [@mokshika](https://github.com/mokshika)
+  - **Role**: Deployment, Infrastructure, CI/CD, Monitoring
+
+### Contact Information
+- **Project Email**: smart-internship-match@example.com
+- **Hackathon Team ID**: [Your Team ID]
+- **Institution**: [Your University/College Name]
+- **City**: [Your City]
 
 ## 🏆 Hackathon Achievements
 
